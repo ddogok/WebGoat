@@ -1,0 +1,30 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - apt update -y
+      - apt install -y docker
+      - apt install -y python3
+      - apt-get install awscli -y
+      - echo $(aws --version)
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 381491915575.dkr.ecr.ap-northeast-2.amazonaws.com
+  build:
+    commands:
+      - ./mvnw clean install -D skipTests
+      - echo Building the Docker image...
+      - docker build -t webgoat .
+      - echo Tagging the Docker image...
+      - docker tag webgoat:latest 381491915575.dkr.ecr.ap-northeast-2.amazonaws.com/webgoat:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push 381491915575.dkr.ecr.ap-northeast-2.amazonaws.com/webgoat:latest
+artifacts:
+  files:
+    - '**/*'
+discard-paths: yes
