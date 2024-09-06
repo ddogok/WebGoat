@@ -1,30 +1,28 @@
 version: 0.2
+
 phases:
   install:
     runtime-versions:
-      java: corretto17
+      java: corretto17  
     commands:
-      - apt update -y
-      - apt install -y docker
-      - apt install -y python3
-      - apt-get install awscli -y
-      - echo $(aws --version)
+      - echo "Install phase: Installing Maven dependencies..."
+      - mvn install
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 381491915575.dkr.ecr.ap-northeast-2.amazonaws.com
+      - echo "Pre-build phase starting..."
   build:
     commands:
-      - ./mvnw clean install -D skipTests
-      - echo Building the Docker image...
-      - docker build -t webgoat .
-      - echo Tagging the Docker image...
-      - docker tag webgoat:latest 381491915575.dkr.ecr.ap-northeast-2.amazonaws.com/webgoat:latest
+      - echo "Build phase: Generating JAR file with Maven..."
+      - mvn package
   post_build:
     commands:
-      - echo Pushing the Docker image...
-      - docker push 381491915575.dkr.ecr.ap-northeast-2.amazonaws.com/webgoat:latest
+      - echo "Build completed at: `date`"
 artifacts:
   files:
-    - '**/*'
-discard-paths: yes
+    - appspec.yml
+    - scripts/**
+  discard-paths: yes
+
+cache:
+  paths:
+    - '/root/.m2/**/*'
