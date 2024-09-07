@@ -1,4 +1,5 @@
 version: 0.2
+
 phases:
   install:
     runtime-versions:
@@ -16,12 +17,14 @@ phases:
   post_build:
     commands:
       - echo "Build completed on `date`"
+
 artifacts:
   files:
     - target/webgoat-*.jar
     - appspec.yml
     - scripts/**
   discard-paths: yes
+
 cache:
   paths:
     - '/root/.m2/**/*'
