@@ -16,7 +16,7 @@ phases:
       - mvn package
   post_build:
     commands:
-      - echo "Build completed at: `date`"
+      - echo "Build completed on `date`"
 
 artifacts:
   files:
