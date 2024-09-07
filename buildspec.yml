@@ -5,14 +5,14 @@ phases:
         runtime-versions:
             java: corretto17
         commands:
-            - echo "Install phase: Installing Maven dependencies..."
+            - echo "Installing Maven dependencies..."
             - mvn install
     pre_build:
         commands:
             - echo "Pre-build phase starting..."
     build:
         commands:
-            - echo "Build phase: Generating JAR file with Maven..."
+            - echo "Generating JAR file with Maven..."
             - mvn package
     post_build:
         commands:
