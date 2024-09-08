@@ -4,16 +4,13 @@ phases:
     install:    
         runtime-versions:
             java: corretto17
-        commands:
-            - echo "Installing Maven dependencies..."
-            - mvn install
     pre_build:
         commands:
             - echo "Pre-build phase starting..."
     build:
         commands:
-            - echo "Generating JAR file with Maven..."
-            - mvn package
+            - echo "Build started on `date`"
+            - ./mvnw clean install -D skipTests
     post_build:
         commands:
             - echo "Build completed on `date`"
@@ -22,9 +19,4 @@ artifacts:
     files:
         - target/webgoat-2023.9-SNAPSHOT.jar
         - appspec.yml
-        - scripts/**
-    discard-paths: yes
-    
-cache:
-    paths:
-        - /root/.m2/**/* 
+        - start.sh
