@@ -18,6 +18,5 @@ phases:
 artifacts:
     files:
         - target/webgoat-2023.9-SNAPSHOT.jar
-        - install_java.sh
         - appspec.yml
         - start.sh
