@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: target/webgoat-2023.8-SNAPSHOT.jar
+  - source: target/webgoat-2023.9-SNAPSHOT.jar
     destination: /app
     overwrite: yes
 
