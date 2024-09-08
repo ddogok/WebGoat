@@ -20,7 +20,7 @@ phases:
             
 artifacts:
     files:
-        - target/webgoat-*.jar
+        - target/webgoat-2023.9-SNAPSHOT.jar
         - appspec.yml
         - scripts/**
     discard-paths: yes
