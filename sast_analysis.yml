@@ -4,12 +4,12 @@ env:
 phases:
   pre_build:
     commands:
-      - mkdir /downloads/sonarqube -p
+      - mkdir -p /downloads/sonarqube
       - cd /downloads/sonarqube
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner-cli-5.0.1.3006-linux.zip
       - mv sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
-      - echo -e "sonar.host.url=http://54.180.133.96:9000// \n sonar.sourceEncoding=UTF-8 \n sonar.qualitygate.wait=true " >> /opt/sonar-scanner/conf/sonar-scanner.properties
+      - echo -e "sonar.host.url=http://3.36.122.33:9000/ \n sonar.sourceEncoding=UTF-8 \n sonar.qualitygate.wait=true " >> /opt/sonar-scanner/conf/sonar-scanner.properties
       - echo -e "#/bin/bash \n export PATH='$PATH:/opt/sonar-scanner/bin'" >> /etc/profile.d/sonar-scanner.sh
       - source /etc/profile.d/sonar-scanner.sh
       - sonar-scanner -v
@@ -17,6 +17,5 @@ phases:
     commands:
       - cd ../..
       - cd /codebuild/output/src*/src
-      # Secrets Manager에서 SonarQube 토큰 가져오기
       - export SONARQUBE_TOKEN=$(aws secretsmanager get-secret-value --secret-id SonarQube_token --query 'SecretString' --output text | jq -r .SonarQube_token)
-      - sonar-scanner -Dsonar.projectKey=WebGoat -Dsonar.sources=. -Dsonar.host.url=http://54.180.133.96:9000/ -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.java.binaries=/opt/sonar-scanner/jre/bin
+      - sonar-scanner -Dsonar.projectKey=WebGoat -Dsonar.sources=. -Dsonar.host.url=http://3.36.122.33:9000/ -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.java.binaries=/opt/sonar-scanner/jre/bin
