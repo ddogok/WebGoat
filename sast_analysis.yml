@@ -9,7 +9,7 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner-cli-5.0.1.3006-linux.zip
       - mv sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
-      - echo -e "sonar.host.url=http://3.36.122.33:9000// \n sonar.sourceEncoding=UTF-8 \n sonar.qualitygate.wait=true " >> /opt/sonar-scanner/conf/sonar-scanner.properties
+      - echo -e "sonar.host.url=http://54.180.133.96:9000// \n sonar.sourceEncoding=UTF-8 \n sonar.qualitygate.wait=true " >> /opt/sonar-scanner/conf/sonar-scanner.properties
       - echo -e "#/bin/bash \n export PATH='$PATH:/opt/sonar-scanner/bin'" >> /etc/profile.d/sonar-scanner.sh
       - source /etc/profile.d/sonar-scanner.sh
       - sonar-scanner -v
