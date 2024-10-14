@@ -18,5 +18,5 @@ phases:
       - cd ../..
       - cd /codebuild/output/src*/src
       # Secrets Manager에서 SonarQube 토큰 가져오기
-      - export SONARQUBE_TOKEN=$(aws secretsmanager get-secret-value --secret-id sonarqube_token --query 'SecretString' --output text | jq -r .sonarqube_token)
-      - sonar-scanner -Dsonar.projectKey=WebGoat -Dsonar.sources=. -Dsonar.host.url=http://3.36.122.33:9000/ -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.java.binaries=/opt/sonar-scanner/jre/bin
+      - export SONARQUBE_TOKEN=$(aws secretsmanager get-secret-value --secret-id SonarQube_token --query 'SecretString' --output text | jq -r .SonarQube_token)
+      - sonar-scanner -Dsonar.projectKey=WebGoat -Dsonar.sources=. -Dsonar.host.url=http://54.180.133.96:9000/ -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.java.binaries=/opt/sonar-scanner/jre/bin
