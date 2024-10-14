@@ -17,4 +17,4 @@ phases:
     commands:
       - cd ../..
       - cd /codebuild/output/src*/src
-      - sonar-scanner -Dsonar.projectKey=WebGoat -Dsonar.sources=. -Dsonar.host.url=http://3.36.122.33:9000/  -Dsonar.login=sqp_c8732a5ba819c169d6ac78dd0bea961cbf0539c0
+      - sonar-scanner -Dsonar.projectKey=WebGoat -Dsonar.sources=. -Dsonar.host.url=http://3.36.122.33:9000/ -Dsonar.login=sqp_c8732a5ba819c169d6ac78dd0bea961cbf0539c0 -Dsonar.java.binaries=/opt/sonar-scanner/jre/bin
