@@ -6,7 +6,7 @@ phases:
             java: corretto17
     pre_build:
         commands:
-            - echo "Pre-build phase starting..."
+            - echo "Pre-build phase starting...."
     build:
         commands:
             - echo "Build started on `date`"
