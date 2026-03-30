@@ -4,17 +4,19 @@ phases:
   install:
     runtime-versions:
       java: corretto21
+    commands:
+      - yum install -y maven
 
   pre_build:
     commands:
       - echo "Pre-build phase starting..."
+      - java -version
+      - mvn -version
 
   build:
     commands:
       - echo "Build started on $(date)"
-      - sed -i 's/\r$//' mvnw
-      - chmod +x mvnw
-      - ./mvnw clean package -DskipTests
+      - mvn clean package -DskipTests
       - echo "Build completed on $(date)"
 
   post_build:
