@@ -11,12 +11,11 @@ phases:
       - java -version
       - sed -i 's/\r$//' mvnw
       - chmod +x mvnw
-      - ./mvnw -version
 
   build:
     commands:
       - echo "Build started on $(date)"
-      - ./mvnw clean package -DskipTests
+      - ./mvnw clean package -DskipTests -Djava.version=21
       - echo "Build completed on $(date)"
 
   post_build:
